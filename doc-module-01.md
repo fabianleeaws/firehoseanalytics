@@ -1,6 +1,8 @@
 ## Lab 1 : Data Ingestion with Kinesis Firehose
 
-In this module, we will create a Kinesis Firehose Delivery Stream to ingest data and deliver it to a staging S3 bucket
+In this module, we will create a Kinesis Firehose Delivery Stream to ingest data and deliver it to a staging S3 bucket.
+
+We will need to create 2 buckets, one to store the raw data ingested by Kinesis Firehose, and another staging bucket to hold data to be consumed by our batch based analytics
 
 ### 1. Create S3 Buckets
 
@@ -12,7 +14,7 @@ In this module, we will create a Kinesis Firehose Delivery Stream to ingest data
 
 2.  Select **Create bucket**
 
-- Choose a name for your S3 bucket, we will reference this bucket as [raw-data-bucket] for the rest of this lab. The S3 bucket namespace is global, so you'll need to pick a unique name. In my example, I'll be going with **kinesisanalyticsrawdata**
+- Choose a name for your S3 bucket, we will reference this bucket as **[raw-data-bucket]** for the rest of this lab. The S3 bucket namespace is global, so you'll need to pick a unique name. In my example, I'll be going with **kinesisanalyticsrawdata**
 
 #### 1.2 Copy sample Node code over to current directory
 
