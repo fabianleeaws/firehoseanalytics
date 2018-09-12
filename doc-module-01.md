@@ -6,13 +6,13 @@ In this module, we will create a Kinesis Firehose Delivery Stream to ingest data
 
 #### 1.1 Create Raw Data Bucket
 
-1.  In the AWS Console, search for **S3** under AWS Services
+1.  In the AWS Console, search for **S3** under AWS Services and select it
 
 ![S3 Service](./imgs/01/01.png)
 
-```
-$ git clone https://github.com/fabianleeaws/beanstalkcicd.git
-```
+2.  Select **create bucket**
+
+- testing list
 
 #### 1.2 Copy sample Node code over to current directory
 
