@@ -12,7 +12,7 @@ In this module, we will create a Kinesis Firehose Delivery Stream to ingest data
 
 2.  Select **create bucket**
 
-- testing list
+- Choose name, <<raw-data-bucket>> for your bucket. The S3 bucket namespace is global, so you'll need to pick a unique name. In my example, I'll be going with **kinesisanalyticsrawdata**
 
 #### 1.2 Copy sample Node code over to current directory
 
