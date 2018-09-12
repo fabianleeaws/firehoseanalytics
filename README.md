@@ -1,4 +1,4 @@
-# firehoseanalytics
+# Firehose Analytics
 
 ## Preparation
 
