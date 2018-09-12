@@ -10,9 +10,9 @@ In this module, we will create a Kinesis Firehose Delivery Stream to ingest data
 
 ![S3 Service](./imgs/01/01.png)
 
-2.  Select **create bucket**
+2.  Select **Create bucket**
 
-- Choose name, <<raw-data-bucket>> for your bucket. The S3 bucket namespace is global, so you'll need to pick a unique name. In my example, I'll be going with **kinesisanalyticsrawdata**
+- Choose name, <raw-data-bucket> for your bucket. The S3 bucket namespace is global, so you'll need to pick a unique name. In my example, I'll be going with **kinesisanalyticsrawdata**
 
 #### 1.2 Copy sample Node code over to current directory
 
