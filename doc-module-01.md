@@ -38,4 +38,8 @@ We will need to create 2 buckets, one to store the raw data ingested by Kinesis 
 - Step 4: Configure settings - Change the **Buffer interval** to 60 seconds. Under IAM role, select **Create new or choose**. On the new tab, enter **[iamuser_firehose_delivery_role]** as the Role Name and select **Allow**. Select **Next**
 - Step 5: Review - Select **Create delivery stream**
 
+**Note**: We need to create an IAM role to give Firehose service permissions to deliver files to our S3 buckets.
+
+Our Kinesis Firehose delivery stream is now ready to ingest and deliver data to the configured S3 buckets.
+
 We're done, continue to [Lab 2 : Deployment with Elastic Beanstalk Command Line Interface (CLI)](./doc-module-02.md)
