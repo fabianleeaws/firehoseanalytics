@@ -14,7 +14,7 @@ CloudFormation templates allows you specify AWS resources with code, which the C
 
 2.  Select **Create a cognito User with CloudFormation**, which will launch it in a new browser tab
 
-3.  In the new tab, change the region from **Oregon** to Asia Pacific (Singapore) from the top right corner
+3.  Now complete the CloudFormation template to create the resources:
 
 - Part 1: Select Template - Select **Next**
 - Part 2: Specify Details - Enter **[iamuser-kinesis-generator]** as the stack name. Enter **[iamuser-kinesis-user]** as the username and choose a strong password. Select **Next**
@@ -25,17 +25,21 @@ CloudFormation templates allows you specify AWS resources with code, which the C
 
 ![KDG URL](./imgs/02/02.png)
 
-![Change region](./imgs/02/01.png)
+#### 1.2 Validate the newly created Cognito User
 
-```
-$ eb --version
+1.  Enter the **[iamuser-kinesis-generator]** and password you used earlier in the top right corner to login
 
-EB CLI 3.14.4 (Python 2.7.1)
-```
+### 2. Start Sending Data to Kinesis Firehose
 
-#### 1.2 Configure EB CLI
+We can now simulate a data stream with KDG
 
-1.  Initialise your Git repository
+#### 2.1
+
+Enter the following details:
+
+1.  Region: **ap-southeast-1** (Singapore)
+2.  Stream/Delivery stream: **[iamuser-firehose]**
+3.  Records per second: 100
 
 ```
 $ git init
