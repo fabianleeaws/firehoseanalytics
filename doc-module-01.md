@@ -14,7 +14,7 @@ We will need to create 2 buckets, one to store the raw data ingested by Kinesis 
 
 2.  Select **Create bucket**
 
-- Choose a name for your S3 bucket, we will reference this bucket as **[raw-data-bucket]** for the rest of this lab. The S3 bucket namespace is global, so you'll need to pick a unique name. In my example, I'll be going with **kinesisanalyticsrawdata**
+- Choose a name for your S3 bucket, we will reference this bucket as **[iamuser-raw-bucket]** for the rest of this lab. The S3 bucket namespace is global, so you'll need to pick a unique name. In my example, I'll be going with **kinesisanalyticsrawdata**
 
 #### 1.2 Copy sample Node code over to current directory
 
