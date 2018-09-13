@@ -14,41 +14,29 @@ We will need to create 2 buckets, one to store the raw data ingested by Kinesis 
 
 2.  Select **Create bucket**
 
-- Choose a name for your S3 bucket, we will reference this bucket as **[iamuser-raw-bucket]** for the rest of this lab. The S3 bucket namespace is global, so you'll need to pick a unique name. In my example, I'll be going with **kinesisanalyticsrawdata**
+- Choose a name for your S3 bucket, the S3 bucket namespace is global, so you'll need to pick a unique name. Include your IAM user to help identify your bucket and make it unique: **[iamuser-raw-bucket]**. In my example, I'll be going with **builderlee-raw-bucket**
+- Ensure the Region selected is **Asia Pacific (Singapore)**
+- Select **Create**
 
-#### 1.2 Copy sample Node code over to current directory
+#### 1.2 Create Staging Data Bucket
 
-1.  Run cp command
+1.  Select **Create bucket**
 
-```
-$ cp beanstalkcicd/lab-01/index.js index.js
-```
+- Enter **[iamuser-staging-bucket]** as the bucket name. In my example, I'll be going with **builderlee-staging-bucket**
+- Ensure the Region selected is **Asia Pacific (Singapore)**
+- Select **Create**
 
-2.  Check the sample code
+### 2. Create Kinesis Firehose Delivery Stream
 
-```
-$ cat index.js
+1.  In the AWS Console, select **Services** at the top and enter **kinesis**, and select **Kinesis**
 
-const express = require("express");
-const app = express();
+2.  At the welcome screen, select **Get started**, followed by **Create delivery stream**
 
-app.get("/", (req, res) => {
-  res.send("Hello world from a Node.js app!");
-});
-app.listen(process.env.PORT, () => {
-  console.log("Server is up on: " + process.env.PORT);
-});
-```
-
-3.  Now that we have the files needed, remove the cloned repository
-
-```
-$ sudo rm -r beanstalkcicd
-```
-
-#### 1.3 Configure Node start script
-
-1.  Edit the package.json file
+- Step 1: Name and source - Use **[iamuser-firehose]** as the **Delivery stream name**, leave the remaining settings as default and select **Next**
+- Step 2: Process records - Leave the default settings and select **Next**
+- Step 3: Choose destination - Under S3 bucket, choose your raw bucket **[iamuser-raw-bucket]**, and select **Next**
+- Step 4: Configure settings - Change the **Buffer interval** to 60 seconds. Under IAM role, select **Create new or choose**. On the new tab, enter **[iamuser_firehose_delivery_role]** as the Role Name and select **Allow**. Select **Next**
+- Step 5: Review - Select **Create delivery stream**
 
 ```
 $ vi package.json
