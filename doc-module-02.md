@@ -33,12 +33,16 @@ CloudFormation templates allows you specify AWS resources with code, which the C
 
 We can now simulate a data stream with KDG
 
-#### 2.1
+#### 2.1 Configure the Generator
 
 Enter the following details:
 
 1.  Region: **ap-southeast-1** (Singapore)
 2.  Stream/Delivery stream: **[iamuser-firehose]**
 3.  Records per second: 100
+
+#### 2.2. Specify Data Model of records
+
+1.
 
 We're done! continue to [Lab 3 : Create & Deploy Your First Docker Image](./doc-module-03.md)
