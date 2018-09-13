@@ -16,11 +16,11 @@
 
 <hr>
 
-## [Part 1 : Create a sample Node API](./doc-module-01.md)
+## [Part 1 : Data Ingestion with Kinesis Firehose](./doc-module-01.md)
 
 <hr>
 
-## [Part 2 : Deployment with Elastic Beanstalk Command Line Interface (CLI)](./doc-module-02.md)
+## [Part 2 : Simulating Real-Time Data ingestion with Kinesis Data Generator ](./doc-module-02.md)
 
 <hr>
 

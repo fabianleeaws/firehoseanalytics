@@ -1,4 +1,4 @@
-## Lab 1 : Data Ingestion with Kinesis Firehose
+## Part 1 : Data Ingestion with Kinesis Firehose
 
 In this module, we will create a Kinesis Firehose Delivery Stream to ingest data and deliver it to a staging S3 bucket.
 
@@ -42,4 +42,4 @@ We will need to create 2 buckets, one to store the raw data ingested by Kinesis 
 
 Our Kinesis Firehose delivery stream is now ready to ingest and deliver data to the configured S3 buckets.
 
-We're done, continue to [Part 2 : Deployment with Elastic Beanstalk Command Line Interface (CLI)](./doc-module-02.md)
+We're done, continue to [Part 2 : Simulating Real-Time Data ingestion with Kinesis Data Generator](./doc-module-02.md)
