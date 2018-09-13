@@ -42,4 +42,4 @@ We will need to create 2 buckets, one to store the raw data ingested by Kinesis 
 
 Our Kinesis Firehose delivery stream is now ready to ingest and deliver data to the configured S3 buckets.
 
-We're done, continue to [Lab 2 : Deployment with Elastic Beanstalk Command Line Interface (CLI)](./doc-module-02.md)
+We're done, continue to [Part 2 : Deployment with Elastic Beanstalk Command Line Interface (CLI)](./doc-module-02.md)

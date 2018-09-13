@@ -8,7 +8,7 @@
 
 1.  IAM user with AdministratorAccess policy attached
 
-## [Lab 0 : Preparing a Lab environment](./doc-module-00.md)
+## [Part 0 : Preparing a Lab environment](./doc-module-00.md)
 
 <hr>
 
@@ -16,15 +16,15 @@
 
 <hr>
 
-## [Lab 1 : Create a sample Node API](./doc-module-01.md)
+## [Part 1 : Create a sample Node API](./doc-module-01.md)
 
 <hr>
 
-## [Lab 2 : Deployment with Elastic Beanstalk Command Line Interface (CLI)](./doc-module-02.md)
+## [Part 2 : Deployment with Elastic Beanstalk Command Line Interface (CLI)](./doc-module-02.md)
 
 <hr>
 
-## [Lab 3 : Create & Deploy Your First Docker Image](./doc-module-03.md)
+## [Part 3 : Create & Deploy Your First Docker Image](./doc-module-03.md)
 
 <hr>
 <hr>
