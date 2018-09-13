@@ -1,6 +1,6 @@
-## Simulating Real-Time Data ingestion with Kinesis Data Generator
+## Simulating Real-Time Data ingestion with Kinesis Data Generator (KDG)
 
-For the sake of this lab, we will be using Amazon Kinesis Data Generator to simulate a live stream of data. This a a tool open sourced by AWS available on: https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html
+For the sake of this lab, we will be using Amazon Kinesis Data Generator (KDG) to simulate a live stream of data. This a a tool open sourced by AWS available on: https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html
 
 ### 1. Create a Cognito User
 
@@ -14,7 +14,16 @@ CloudFormation templates allows you specify AWS resources with code, which the C
 
 2.  Select **Create a cognito User with CloudFormation**, which will launch it in a new browser tab
 
-3.  In the new tab, change the region from Oregon to Singapore from the top right corner
+3.  In the new tab, change the region from **Oregon** to Asia Pacific (Singapore) from the top right corner
+
+- Part 1: Select Template - Select **Next**
+- Part 2: Specify Details - Enter **[iamuser-kinesis-generator]** as the stack name. Enter **[iamuser-kinesis-user]** as the username and choose a strong password. Select **Next**
+- Part 3: Options - Leave the default settings and select **Next**
+- Part 4: Review - Select the checkbox for **I acknowledge that AWS CloudFormation might create IAM resources**. Select **Create**
+
+4.  To get the URL to access KDG, expands the Outputs dropdown:
+
+![KDG URL](./imgs/02/02.png)
 
 ![Change region](./imgs/02/01.png)
 
