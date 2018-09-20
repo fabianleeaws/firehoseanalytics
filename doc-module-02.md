@@ -1,4 +1,4 @@
-## Simulating Real-Time Data ingestion with Kinesis Data Generator (KDG)
+## Simulating Real-Time Data Ingestion with Kinesis Data Generator (KDG)
 
 For the sake of this lab, we will be using Amazon Kinesis Data Generator (KDG) to simulate a live stream of data. This a a tool open sourced by AWS available on: https://awslabs.github.io/amazon-kinesis-data-generator/web/help.html
 
@@ -19,6 +19,8 @@ CloudFormation templates allows you specify AWS resources with code, which the C
 Ensure the region at the top right corner is **Oregon**:
 
 ![KDG Region](./imgs/02/02.png)
+
+**Note**: While the cognito user KDG will use is created in Oregon region, the target Kinesis Firehose can be in Singapore region
 
 - Part 1: Select Template - Select **Next**
 - Part 2: Specify Details - Enter **[iamuser-kinesis-generator]** as the stack name. Enter **[iamuser-kinesis-user]** as the username and choose a strong password. Select **Next**
