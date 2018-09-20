@@ -16,6 +16,10 @@ CloudFormation templates allows you specify AWS resources with code, which the C
 
 3.  Now complete the CloudFormation template to create the resources:
 
+Ensure the region at the top right corner is **Oregon**:
+
+![KDG Region](./imgs/02/02.png)
+
 - Part 1: Select Template - Select **Next**
 - Part 2: Specify Details - Enter **[iamuser-kinesis-generator]** as the stack name. Enter **[iamuser-kinesis-user]** as the username and choose a strong password. Select **Next**
 - Part 3: Options - Leave the default settings and select **Next**
@@ -23,7 +27,7 @@ CloudFormation templates allows you specify AWS resources with code, which the C
 
 4.  To get the URL to access KDG, expands the Outputs dropdown:
 
-![KDG URL](./imgs/02/02.png)
+![KDG URL](./imgs/02/03.png)
 
 #### 1.2 Validate the newly created Cognito User
 
