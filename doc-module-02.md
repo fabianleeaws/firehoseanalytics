@@ -51,9 +51,9 @@ Enter the following details:
 
 1.
 
-```
+````
 {
-  "apMac": "00-40-96-01-23-45,
+  "apMac": "00-40-96-01-23-45",
   "apTags": ["AP1","M1 Building"],
   "apFloors": ["1"],
   "observations": [
@@ -62,17 +62,17 @@ Enter the following details:
       "ipv4": "/111.65.32.53",
       "ipv6": null,
       "seenTime": "{{date.utc("YYYY-MM-DD HH:mm:ss.SSS")}}",
-      "seenEpoch": <integer>,
-      "ssid": <string>,
-      "rssi": <integer>,
-      "manufacturer": <string>,
-      "os": <string>,
+      "seenEpoch": "integer",
+      "ssid": "fabian-note-8",
+      "rssi": "integer",
+      "manufacturer": "Samsung",
+      "os": "Android Oreo,
       "location": {
-        "lat": <decimal>,
-        "lng": <decimal>,
-        "unc": <decimal>,
-        "x": [<decimal>, ...],
-        "y": [<decimal>, ...]
+        "lat": 1.290270,
+        "lng": 1.290270,
+        "unc": 1,
+        "x": "[<decimal>, ...]",
+        "y": "[<decimal>, ...]"
       }
     }
   ]
@@ -80,3 +80,4 @@ Enter the following details:
 ```
 
 We're done! continue to [Lab 3 : Create & Deploy Your First Docker Image](./doc-module-03.md)
+````
