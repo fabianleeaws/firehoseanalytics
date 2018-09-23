@@ -35,7 +35,11 @@ We will need to create 2 buckets, one to store the raw data ingested by Kinesis 
 - Step 1: Name and source - Use **[iamuser-firehose]** as the **Delivery stream name**, leave the remaining settings as default and select **Next**
 - Step 2: Process records - Leave the default settings and select **Next**
 - Step 3: Choose destination - Under S3 bucket, choose your raw bucket **[iamuser-raw-bucket]**, and select **Next**
-- Step 4: Configure settings - Change the **Buffer interval** to 60 seconds. Under IAM role, select **Create new or choose**. On the new tab, enter **[iamuser_firehose_delivery_role]** as the Role Name and select **Allow**. Select **Next**
+  ![S3 Destination](./imgs/01/02.png)
+- Step 4: Configure settings - Change the **Buffer interval** to 60 seconds.
+  ![Buffer Interval](./imgs/01/03.png)
+  Under IAM role, select **Create new or choose**. On the new tab, enter **[iamuser_firehose_delivery_role]** as the Role Name and select **Allow**. Select **Next**
+
 - Step 5: Review - Select **Create delivery stream**
 
 **Note**: We need to create an IAM role to give Firehose service permissions to deliver files to our S3 buckets.
