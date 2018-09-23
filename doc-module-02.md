@@ -66,7 +66,7 @@ Enter the following details:
       "ssid": "fabian-note-8",
       "rssi": "integer",
       "manufacturer": "Samsung",
-      "os": "Android Oreo,
+      "os": "Android Oreo",
       "location": {
         "lat": 1.290270,
         "lng": 1.290270,
