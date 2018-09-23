@@ -87,7 +87,15 @@ Enter the following details:
 
 ![Stop Sending](./imgs/02/04.png)
 
-3.  To validate we
+3.  We will now take a look at the data ingested by Kinesis Firehose and delivered to S3. In the AWS Console, search for **S3** under AWS Services and select it
+
+4.  Select the **[iamuser-raw-bucket]** bucket, and notice the folder structure follows a **"YYYY/MM/DD/HH" UTC** time format to split the data. This is the default structure firehose uses, but is configurable by users.
+
+You can read more about changing the prefix here: https://docs.aws.amazon.com/firehose/latest/dev/create-destination.html#create-destination-s3
+
+5.  Keep entering each subfolder until you reach the files:
+
+![Delivered files](./imgs/02/04.png)
 
 We're done! continue to [Lab 3 : Create & Deploy Your First Docker Image](./doc-module-03.md)
 
