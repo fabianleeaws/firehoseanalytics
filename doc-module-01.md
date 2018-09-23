@@ -38,7 +38,11 @@ We will need to create 2 buckets, one to store the raw data ingested by Kinesis 
   ![S3 Destination](./imgs/01/02.png)
 - Step 4: Configure settings - Change the **Buffer interval** to 60 seconds.
   ![Buffer Interval](./imgs/01/03.png)
-  Under IAM role, select **Create new or choose**. On the new tab, enter **[iamuser_firehose_delivery_role]** as the Role Name and select **Allow**. Select **Next**
+
+  Under IAM role, select **Create new or choose**.
+  ![Buffer Interval](./imgs/01/04.png)
+
+  On the new tab, enter **[iamuser_firehose_delivery_role]** as the Role Name and select **Allow**. Select **Next**
 
 - Step 5: Review - Select **Create delivery stream**
 
