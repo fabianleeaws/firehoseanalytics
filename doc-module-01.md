@@ -40,12 +40,13 @@ We will need to create 2 buckets, one to store the raw data ingested by Kinesis 
   ![Buffer Interval](./imgs/01/03.png)
 
   Under IAM role, select **Create new or choose**.
-  ![Buffer Interval](./imgs/01/04.png)
+  ![IAM Role](./imgs/01/04.png)
 
   On the new tab:
 
   - Select **Create a new IAM Role**
   - Enter **[iamuser_firehose_delivery_role]** as the Role Name and select **Allow**.
+    ![Create Role](./imgs/01/05.png)
 
   Select **Next**
 
