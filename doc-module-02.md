@@ -95,7 +95,7 @@ You can read more about changing the prefix here: https://docs.aws.amazon.com/fi
 
 5.  Keep entering each subfolder until you reach the files:
 
-![Delivered files](./imgs/02/04.png)
+![Delivered files](./imgs/02/05.png)
 
 We're done! continue to [Lab 3 : Create & Deploy Your First Docker Image](./doc-module-03.md)
 
