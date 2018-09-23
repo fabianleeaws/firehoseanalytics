@@ -54,7 +54,7 @@ Enter the following details:
 ```
 {
   "apMac": "00-40-96-01-23-45",
-  "apTags": ["AP1","M1 Building"],
+  "apTags": ["AP1","Capital Square"],
   "apFloors": ["1"],
   "observations": [
     {
@@ -96,6 +96,10 @@ You can read more about changing the prefix here: https://docs.aws.amazon.com/fi
 5.  Keep entering each subfolder until you reach the files:
 
 ![Delivered files](./imgs/02/05.png)
+
+6.  Kinesis Firehose will split files up based on your buffer settings, remember we set our buffer at 1MB and 60 settings. This means Kinesis Firehose will deliver a file once either 60 seconds or passed or 1MB of data has been ingested, whichever happens first.
+
+7.  Select a file, select **Download**, and open up the file in a text editor
 
 We're done! continue to [Lab 3 : Create & Deploy Your First Docker Image](./doc-module-03.md)
 
