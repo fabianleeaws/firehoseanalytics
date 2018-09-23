@@ -42,7 +42,12 @@ We will need to create 2 buckets, one to store the raw data ingested by Kinesis 
   Under IAM role, select **Create new or choose**.
   ![Buffer Interval](./imgs/01/04.png)
 
-  On the new tab, enter **[iamuser_firehose_delivery_role]** as the Role Name and select **Allow**. Select **Next**
+  On the new tab:
+
+  - Select **Create a new IAM Role**
+  - Enter **[iamuser_firehose_delivery_role]** as the Role Name and select **Allow**.
+
+  Select **Next**
 
 - Step 5: Review - Select **Create delivery stream**
 
