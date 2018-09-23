@@ -51,7 +51,7 @@ Enter the following details:
 
 1.
 
-````
+```
 {
   "apMac": "00-40-96-01-23-45",
   "apTags": ["AP1","M1 Building"],
@@ -79,5 +79,18 @@ Enter the following details:
 }
 ```
 
+#### 2.3 Send Data to Kinesis Firehose & Validate Delivery
+
+1.  Select **Send Data**
+
+2.  Select **Stop Sending Data to Kinesis** once you've sent at least 2000 records:
+
+![Stop Sending](./imgs/02/04.png)
+
+3.  To validate we
+
 We're done! continue to [Lab 3 : Create & Deploy Your First Docker Image](./doc-module-03.md)
-````
+
+```
+
+```
