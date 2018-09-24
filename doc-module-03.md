@@ -22,7 +22,9 @@ There are a few components you'll need to get familiar with AWS Batch:
 
 ![Batch Get Started](./imgs/03/01.png)
 
-3.  Now complete the CloudFormation template to create the resources:
+3.  However, we will not be using the getting started Wizard, but create each Batch component individually (Compute Environment, Job Definition etc.) to get a deeper understanding in the dependencies. Select **Cancel** at the bottom right:
+
+![Cancel Wizard](./imgs/03/02.png)
 
 Ensure the region at the top right corner is **Oregon**:
 
