@@ -26,17 +26,11 @@ We will be building a docker container to run our batch job, which simplifies co
 
 4.  Enter **[iamuser-repo]** as the **Repository name**
 
-5.  Select **Next step**
+5.  Select **Next step**. You now have a private repository for your docker images:
 
-![Batch Get Started](./imgs/03/01.png)
+![ECR Repo](./imgs/03/03.png)
 
-3.  However, we will not be using the getting started Wizard, but create each Batch component individually (Compute Environment, Job Definition etc.) to get a deeper understanding in the dependencies. Select **Cancel** at the bottom right:
-
-![Cancel Wizard](./imgs/03/02.png)
-
-4.  Select **Job Definition** from the left menu
-
-5.  Enter **[iamuser-job-def]** as the **Job definition name**
+6.
 
 #### 1.2 Validate the newly created Cognito User
 
