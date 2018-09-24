@@ -14,7 +14,31 @@ There are a few components you'll need to get familiar with AWS Batch:
 
 **Reference**: https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html
 
-#### 1.1 Create Cognito User with CloudFormation
+#### 1.1 Create Containerised Batch Job
+
+We will be building a docker container to run our batch job, which simplifies continuous development and deployment of our code. There are many benefits of using containers in general which we will not be diving deep into today, but one benefit with batch is that your code is no longer tied to the Amazon Machine Image (AMI) used to launch the batch job, but rather, self-contained inside a docker image which is decoupled from the underlying infrastructure.
+
+1.  In the AWS Console, search for **ECS** under AWS Services and select Elastic Container Service.
+
+2.  Select **Repositories** on the left menu
+
+3.  Select **Get started**
+
+4.  Enter **[iamuser-repo]** as the **Repository name**
+
+5.  Select **Next step**
+
+![Batch Get Started](./imgs/03/01.png)
+
+3.  However, we will not be using the getting started Wizard, but create each Batch component individually (Compute Environment, Job Definition etc.) to get a deeper understanding in the dependencies. Select **Cancel** at the bottom right:
+
+![Cancel Wizard](./imgs/03/02.png)
+
+4.  Select **Job Definition** from the left menu
+
+5.  Enter **[iamuser-job-def]** as the **Job definition name**
+
+#### 1.2 Validate the newly created Cognito User
 
 1.  In the AWS Console, search for **Batch** under AWS Services and select it.
 
@@ -26,24 +50,9 @@ There are a few components you'll need to get familiar with AWS Batch:
 
 ![Cancel Wizard](./imgs/03/02.png)
 
-Ensure the region at the top right corner is **Oregon**:
+4.  Select **Job Definition** from the left menu
 
-![KDG Region](./imgs/02/02.png)
-
-**Note**: While the cognito user KDG will use is created in Oregon region, the target Kinesis Firehose can be in Singapore region
-
-- Part 1: Select Template - Select **Next**
-- Part 2: Specify Details - Enter **[iamuser-kinesis-generator]** as the stack name. Enter **[iamuser-kinesis-user]** as the username and choose a strong password. Select **Next**
-- Part 3: Options - Leave the default settings and select **Next**
-- Part 4: Review - Select the checkbox for **I acknowledge that AWS CloudFormation might create IAM resources**. Select **Create**
-
-4.  To get the URL to access KDG, expands the Outputs dropdown:
-
-![KDG URL](./imgs/02/03.png)
-
-#### 1.2 Validate the newly created Cognito User
-
-1.  Enter the **[iamuser-kinesis-generator]** and password you used earlier in the top right corner to login
+5.  Enter **[iamuser-job-def]** as the **Job definition name**
 
 ### 2. Start Sending Data to Kinesis Firehose
 

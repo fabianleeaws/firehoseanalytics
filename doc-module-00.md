@@ -12,7 +12,7 @@
 
 - Use the Singapore region!
 
-1.  Specify Environment name : "YOUR INITIAL-workshop"
+1.  Specify Environment name : **[iamuser-kinesis-workshop]**
 
 ![ec2 instance](./imgs/00/01.png)
 
