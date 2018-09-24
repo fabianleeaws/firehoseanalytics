@@ -104,7 +104,3 @@ You can read more about changing the prefix here: https://docs.aws.amazon.com/fi
 ![RAW JSON](./imgs/02/06.png)
 
 We're done! continue to [Lab 3 : Running Batch Jobs with AWS Batch](./doc-module-03.md)
-
-```
-
-```
