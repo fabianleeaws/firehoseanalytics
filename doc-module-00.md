@@ -1,8 +1,8 @@
 ## Preparing a your Lab environment
 
 - This module is for configuring your dev environment
-- We will show the set up process of Cloud9 Env and Node Develpoment environment.
-- Cloud 9 is recommended as your dev IDE for studying this workshop
+- We will be using Cloud9, a cloud-based IDE environment that let's you write, run, and debug your code with just a browser
+- Cloud9 comes prepackaged with essential tools for popular programming languages, including JavaScript, Python, PHP, and more, so you don’t need to install files or configure your development machine to start new projects
 
 ## 1. Using Cloud9
 
@@ -30,8 +30,6 @@
 
 8.  Select **Create environment**
 
-![ec2 instance](./imgs/00/02.png) 4. Review and launching your environment
-
 ##### Open your environment
 
 ![ec2 instance](./imgs/00/03.png)
@@ -44,22 +42,14 @@
 $ sudo yum -y update
 ```
 
-2.  Run this command to install the latest version of Node.js.
-
-```
-$ nvm install 6.14.3
-```
-
-reference : "Node.js Sample for AWS Cloud9" https://docs.aws.amazon.com/cloud9/latest/user-guide/sample-nodejs.html
-
 ### 1.3 Create a working directory for this workshop
 
 1.  Create folder, and change current directory
 
 ```
-$ mkdir beanstalk-workshop
+$ mkdir kinesis-workshop
 
-$ cd beanstalk-workshop
+$ cd kinesis-workshop
 ```
 
 2.  Configure Git credential helper included in the AWS CLI. The credential helper allows Git to use HTTPS and a cryptographically signed version of your IAM user credentials or Amazon EC2 instance role whenever Git needs to authenticate with AWS to interact with AWS CodeCommit repositories.
@@ -71,14 +61,15 @@ $ git config --global credential.UseHttpPath true
 
 ### 1.4 Configure your Node environment
 
-1.  Check node version and check the location of Node
+1.  Check Python version and check the location of Node
 
 ```
-$ node -v
-v6.14.3
+$ python -V
+Python 2.7.14
 
-$ which node
-~/.nvm/versions/node/v6.14.3/bin/node
+$ which python
+alias python='python27'
+        /usr/bin/python27
 ```
 
 2.  Run this command to initialise Node project, accept all defaults by hitting **enter** 10 times
