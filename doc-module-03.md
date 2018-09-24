@@ -18,6 +18,8 @@ There are a few components you'll need to get familiar with AWS Batch:
 
 We will be building a docker container to run our batch job, which simplifies continuous development and deployment of our code. There are many benefits of using containers in general which we will not be diving deep into today, but one benefit with batch is that your code is no longer tied to the Amazon Machine Image (AMI) used to launch the batch job, but rather, self-contained inside a docker image which is decoupled from the underlying infrastructure.
 
+To store these docker images, we will create an Elastic Container Registry which is backed by S3, offering us the same durability and cost efficient characteristics.
+
 1.  In the AWS Console, search for **ECS** under AWS Services and select Elastic Container Service.
 
 2.  Select **Repositories** on the left menu
@@ -30,7 +32,9 @@ We will be building a docker container to run our batch job, which simplifies co
 
 ![ECR Repo](./imgs/03/03.png)
 
-6.
+6.  On the same page, there are also useful instructions displayed on how to authenticate, and push images into ECR:
+
+![ECR Repo](./imgs/03/04.png)
 
 #### 1.2 Validate the newly created Cognito User
 
