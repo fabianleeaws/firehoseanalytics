@@ -26,6 +26,14 @@ We will need to create 2 buckets, one to store the raw data ingested by Kinesis 
 - Ensure the Region selected is **Asia Pacific (Singapore)**
 - Select **Create**
 
+#### 1.3 Create Workbook Bucket
+
+1.  Select **Create bucket**
+
+- Enter **[iamuser-workbooks]** as the bucket name. In my example, I'll be going with **builderlee-workbooks**
+- Ensure the Region selected is **Asia Pacific (Singapore)**
+- Select **Create**
+
 ### 2. Create Kinesis Firehose Delivery Stream
 
 1.  In the AWS Console, select **Services** at the top and enter **kinesis**, and select **Kinesis**

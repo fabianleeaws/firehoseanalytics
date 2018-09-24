@@ -59,7 +59,7 @@ $ git config --global credential.helper '!aws codecommit credential-helper $@'
 $ git config --global credential.UseHttpPath true
 ```
 
-### 1.4 Check your Python environment
+### 1.4 Update your Python environment
 
 1.  Check Python version and check the location of Node
 
@@ -70,6 +70,20 @@ Python 2.7.14
 $ which python
 alias python='python27'
         /usr/bin/python27
+```
+
+2.  Install Python3 and boto3:
+
+```
+sudo python -m pip install boto3
+```
+
+### 1.5 Update AWS CLI
+
+1.  Update awscli
+
+```
+pip install awscli --upgrade --user
 ```
 
 We're done, continue to [Part 1 : Data Ingestion with Kinesis Firehose](./doc-module-01.md)
