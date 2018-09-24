@@ -24,7 +24,7 @@
 
 <hr>
 
-## [Part 3 : Create & Deploy Your First Docker Image](./doc-module-03.md)
+## [Part 3 : Running Batch Jobs with AWS Batch](./doc-module-03.md)
 
 <hr>
 <hr>
