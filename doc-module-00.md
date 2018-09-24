@@ -59,7 +59,7 @@ $ git config --global credential.helper '!aws codecommit credential-helper $@'
 $ git config --global credential.UseHttpPath true
 ```
 
-### 1.4 Configure your Node environment
+### 1.4 Check your Python environment
 
 1.  Check Python version and check the location of Node
 
@@ -72,58 +72,4 @@ alias python='python27'
         /usr/bin/python27
 ```
 
-2.  Run this command to initialise Node project, accept all defaults by hitting **enter** 10 times
-
-```
-$ npm init
-
-This utility will walk you through creating a package.json file.
-It only covers the most common items, and tries to guess sensible defaults.
-
-See `npm help json` for definitive documentation on these fields
-and exactly what they do.
-
-Use `npm install <pkg>` afterwards to install a package and
-save it as a dependency in the package.json file.
-
-Press ^C at any time to quit.
-package name: (beanstalk-workshop)
-version: (1.0.0)
-description:
-entry point: (index.js)
-test command:
-git repository: (https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/beanstalk-workshop)
-keywords:
-author:
-license: (ISC)
-About to write to /home/ec2-user/environment/beanstalk-workshop/package.json:
-
-{
-  "name": "beanstalk-workshop",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/beanstalk-workshop"
-  },
-  "author": "",
-  "license": "ISC"
-}
-
-
-Is this OK? (yes)
-```
-
-### 1.5 Install Express Framework for Node, we'll be using it to create simple REST APIs
-
-1.  Run this command to install the latest version of Express framework for Node. We'll be using it to create simple REST APIs
-
-```
-$ npm install express --save
-```
-
-We're done, continue to [Lab 1 : Create a sample Node API](./doc-module-01.md)
+We're done, continue to [Part 1 : Data Ingestion with Kinesis Firehose](./doc-module-01.md)
