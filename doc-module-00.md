@@ -12,12 +12,23 @@
 
 - Use the Singapore region!
 
-1.  Specify Environment name : **[iamuser-kinesis-workshop]**
+1.  In the AWS Console, search for **Cloud9** under AWS Services and select **Cloud9**.
+
+2.  Select **Create environment**
+
+3.  Specify Environment name : **[iamuser-kinesis-workshop]**
 
 ![ec2 instance](./imgs/00/01.png)
 
-2.  Select "Create a new instance"
-3.  Select "t2.small"
+4.  Select **Next step**
+
+5.  Select **Create a new instance for envinronment (EC2)**
+
+6.  Select **t2.micro**
+
+7.  Select **Next step**
+
+8.  Select **Create environment**
 
 ![ec2 instance](./imgs/00/02.png) 4. Review and launching your environment
 
