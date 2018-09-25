@@ -131,6 +131,15 @@ You should see an output similar to the screenshot below:
 
 ![Batch Job Output](./imgs/03/05.png)
 
+12. To validate the **[iamuser_output_file.json]** file has been uploaded to S3, run the following command or view the bucket via the AWS console:
+
+```
+$  s3 ls builderlee-workbooks --recursive
+```
+
+Console:
+![Batch Job Output](./imgs/03/06.png)
+
 #### 1.2 Create Containerised Batch Job
 
 Now we will need to create a simple application
