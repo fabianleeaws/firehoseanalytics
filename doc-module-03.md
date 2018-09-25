@@ -121,7 +121,7 @@ wb_bucket.upload_file(OUTPUT_FILE, PREFIX+OUTPUT_FILE)
 - **WORKBOOK_BUCKET**: The name of your Workbooks bucket **[iamuser-workbooks]**
 - **OUTPUT_FILE**: The name of your processed file to be uploaded back to S3 **[iamuser_output_file.json]**
 
-11. Run the python script to test your batchjob:
+11. Run the python script to test your batch job:
 
 ```
 $ python batchjob.py
@@ -142,7 +142,70 @@ Console:
 
 #### 1.2 Create Containerised Batch Job
 
-Now we will need to create a simple application
+AWS Batch supports any job that can be executed as a Docker container. Containerising a Python script is relatively simple compared to a full blown web application, and provides many benefits as you have a self contained image then is built programmatically, and abstracts the underlying infrastructure from the runtime environment.
+
+1.  Ensure you are in the lab working directory:
+
+```
+$ pwd
+/home/ec2-user/environment/kinesis-workshop
+```
+
+2.  Create a Dockerfile:
+
+```
+$ touch Dockerfile
+```
+
+3.  Double click **Dockerfile** to edit the file in the visual editor, and add the following code:
+
+```
+FROM amazonlinux:latest
+
+RUN yum -y update
+RUN curl -O https://bootstrap.pypa.io/get-pip.py
+RUN python get-pip.py --user
+RUN python -m pip install boto3
+ADD batchjob.py /usr/local/bin/batchjob.py
+RUN chmod a+x /usr/local/bin/batchjob.py
+WORKDIR /tmp
+USER nobody
+
+ENTRYPOINT ["python", "/usr/local/bin/batchjob.py"]
+```
+
+4.  Build Docker image:
+
+```
+$ docker build -t builderlee-repo/batchjob .
+```
+
+5.  After the build completes, tag your image so you can push the image to this repository:
+
+```
+$ docker tag builderlee-repo/batchjob:latest 327377359968.dkr.ecr.ap-southeast-1.amazonaws.com/builderlee-repo:latest
+```
+
+6.  Run the following command to view your newly built and tagged image:
+
+```
+$ docker images
+REPOSITORY                                                          TAG                 IMAGE ID            CREATED             SIZE
+327377359968.dkr.ecr.ap-southeast-1.amazonaws.com/builderlee-repo   latest              0d028ad43a87        9 minutes ago       301MB
+```
+
+7.  Before we can push our image to ECR, we need to get the login credentials with the following command:
+
+```
+$ $(aws ecr get-login --no-include-email --region ap-southeast-1)
+
+WARNING! Using --password via the CLI is insecure. Use --password-stdin.
+WARNING! Your password will be stored unencrypted in /home/ec2-user/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+```
 
 #### 1.2 Validate the newly created Cognito User
 
@@ -176,7 +239,7 @@ Enter the following details:
 
 1.
 
-````
+```
 {
 "apMac": "00-40-96-01-23-45",
 "apTags": ["AP1","Capital Square"],
@@ -202,8 +265,8 @@ Enter the following details:
 }
 ]
 }
-
 ```
+
 #### 2.3 Send Data to Kinesis Firehose & Validate Delivery
 
 1.  Select **Send Data**
@@ -229,9 +292,15 @@ You can read more about changing the prefix here: https://docs.aws.amazon.com/fi
 ![RAW JSON](./imgs/02/06.png)
 
 We're done! continue to [Lab 3 : Running Batch Jobs with AWS Batch](./doc-module-03.md)
+
+```
+
 ```
 
 ```
 
 ```
-````
+
+```
+
+```

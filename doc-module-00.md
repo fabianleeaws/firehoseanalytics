@@ -72,7 +72,7 @@ alias python='python27'
         /usr/bin/python27
 ```
 
-2.  Install Python3 and boto3:
+2.  Install boto3:
 
 ```
 sudo python -m pip install boto3
