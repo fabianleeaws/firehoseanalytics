@@ -237,4 +237,14 @@ Login Succeeded
 $ docker push 327377359968.dkr.ecr.ap-southeast-1.amazonaws.com/builderlee-repo:latest
 ```
 
+9.  To validate the image has been updated to ECR, search for **ECS** under AWS Services and select Elastic Container Service.
+
+10. Select **Repositories**
+
+11. Select **[iamuser-repo]**
+
+12. Observe that the image has been pushed to ECR:
+
+![ECR Repo](./imgs/03/09.png)
+
 We're done! continue to [Part 4 : Running Batch Jobs with AWS Batch](./doc-module-04.md)
