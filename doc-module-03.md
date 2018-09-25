@@ -73,15 +73,14 @@ MONTH = str(now.month).zfill(2)
 DAY = str(now.day).zfill(2)
 PREFIX = YEAR+'/'+MONTH+'/'+DAY+'/'
 print (PREFIX)
-STAGING_BUCKET = 'builderlee-raw-bucket' # replace with your S3 bucket name for [iamuser-raw-bucket]
-WORKBOOK_BUCKET = 'builderlee-workbooks' # replace with your S3 bucket name for [iamuser-workbooks]
-KEY = 'test/' # replace with your object key
+RAW_BUCKET = '[iamuser-raw-bucket]' # replace with your S3 bucket name for [iamuser-raw-bucket]
+WORKBOOK_BUCKET = '[iamuser-workbooks]' # replace with your S3 bucket name for [iamuser-workbooks]
 SCRATCH = 'scratch'
-OUTPUT_FILE = 'builderlee_output_file.json' # replace with [iamuser_output_file.json]
+OUTPUT_FILE = '[iamuser_output_file.json]' # replace with [iamuser_output_file.json]
 
 ## Instantiate S3 object via boto3
 s3 = boto3.resource('s3')
-sg_bucket = s3.Bucket(STAGING_BUCKET)
+sg_bucket = s3.Bucket(RAW_BUCKET)
 
 ## Create scratch space
 try:
@@ -97,7 +96,7 @@ for obj in sg_bucket.objects.filter(Prefix=PREFIX):
         #print('longer than 15')
         print(obj.key)
         try:
-            sg_bucket.download_file(obj.key, SCRATCH+obj.key[14:len(obj.key)])
+            sg_bucket.download_file(obj.key, SCRATCH+'/'+obj.key[-78:])
         except botocore.exceptions.ClientError as e:
             if e.response['Error']['Code'] == "404":
                 print("The object does not exist.")
@@ -114,6 +113,18 @@ with open(OUTPUT_FILE,'wb') as wfd:
 ## Upload processed JSON to Workbook Bucket
 wb_bucket = s3.Bucket(WORKBOOK_BUCKET)
 wb_bucket.upload_file(OUTPUT_FILE, PREFIX+OUTPUT_FILE)
+```
+
+10. You'll need to change a number of parameters under the configuration:
+
+- **RAW_BUCKET**: The name of your raw S3 bucket **[iamuser-staging-bucket]**
+- **WORKBOOK_BUCKET**: The name of your Workbooks bucket **[iamuser-workbooks]**
+- **OUTPUT_FILE**: The name of your processed file to be uploaded back to S3 **[iamuser_output_file.json]**
+
+11. Run the python script to test your batchjob:
+
+```
+$ python batchjob.py
 ```
 
 #### 1.2 Create Containerised Batch Job
