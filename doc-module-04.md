@@ -14,7 +14,20 @@ There are a few components you'll need to get familiar with AWS Batch:
 
 **Reference**: https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html
 
-#### 1.1 Create Compute Environment
+#### 1.1 Create IAM Instance Role for AWS Batch Instances
+
+1.  As a best practice, when your containerised batch job runs on an EC2 instance, you should rely on the EC2 instance role of the underlying EC2 instance to retrieve temporary credentials to access AWS resources (S3) instead of passing in permanent credentials into the container directly in the code.
+
+2.  We will now create the EC2 instance role with permissions for S3. In the AWS Console, search for **IAM** under AWS Services and select **IAM**.
+
+3.  Select **Roles** on the left menu
+
+4.  Select **Create role**
+
+5.  Select **EC2**
+6.  Select **Next: Permissions**
+
+#### 1.2 Create Compute Environment
 
 1.  In the AWS Console, search for **Batch** under AWS Services and select it.
 
@@ -22,13 +35,19 @@ There are a few components you'll need to get familiar with AWS Batch:
 
 ![Batch Get Started](./imgs/04/01.png)
 
-3.  However, we will not be using the getting started Wizard, but create each Batch component individually (Compute Environment, Job Definition etc.) to get a deeper understanding in the dependencies. Select **Cancel** at the bottom right:
+3.  However, we will not be using the getting started Wizard, but create each Batch component individually (Compute Environment, Job Definition etc.) to get a deeper understanding in the dependencies. Select **Cancel** at the bottom right
 
-![Cancel Wizard](./imgs/04/02.png)
+4.  Select **Compute Environment** from the left menu
 
-4.  Select **Job Definition** from the left menu
+5.  Enter the following details:
 
-5.  Enter **[iamuser-job-def]** as the **Job definition name**
+- **Compute environment name**: [iamuser-env]
+- **Service role**: Create new role
+- **Instance role**:
+
+6.  Select **Job Definition** from the left menu
+
+7.  Enter **[iamuser-job-def]** as the **Job definition name**
 
 We're done! continue to [Lab 3 : Running Batch Jobs with AWS Batch](./doc-module-03.md)
 
