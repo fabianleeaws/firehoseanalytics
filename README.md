@@ -24,7 +24,11 @@
 
 <hr>
 
-## [Part 3 : Running Batch Jobs with AWS Batch](./doc-module-03.md)
+## [Part 3 : Creating a Sample Python Application](./doc-module-03.md)
+
+<hr>
+
+## [Part 4 : Running Batch Jobs with AWS Batch](./doc-module-04.md)
 
 <hr>
 <hr>
