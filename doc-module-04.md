@@ -20,11 +20,11 @@ There are a few components you'll need to get familiar with AWS Batch:
 
 2.  If you currently don't have any resource sconfigured in AWS Batch, you'll be greeted with the **Getting Started** page. Select **Get started**:
 
-![Batch Get Started](./imgs/03/01.png)
+![Batch Get Started](./imgs/04/01.png)
 
 3.  However, we will not be using the getting started Wizard, but create each Batch component individually (Compute Environment, Job Definition etc.) to get a deeper understanding in the dependencies. Select **Cancel** at the bottom right:
 
-![Cancel Wizard](./imgs/03/02.png)
+![Cancel Wizard](./imgs/04/02.png)
 
 4.  Select **Job Definition** from the left menu
 
