@@ -127,6 +127,10 @@ wb_bucket.upload_file(OUTPUT_FILE, PREFIX+OUTPUT_FILE)
 $ python batchjob.py
 ```
 
+You should see an output similar to the screenshot below:
+
+![Batch Job Output](./imgs/03/05.png)
+
 #### 1.2 Create Containerised Batch Job
 
 Now we will need to create a simple application
