@@ -207,4 +207,4 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 ```
 
-We're done! continue to [Lab 3 : Running Batch Jobs with AWS Batch](./doc-module-04.md)
+We're done! continue to [Part 4 : Running Batch Jobs with AWS Batch](./doc-module-04.md)
