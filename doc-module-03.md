@@ -231,4 +231,10 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 ```
 
+8.  Run the following command to push the image to ECR:
+
+```
+$ docker push 327377359968.dkr.ecr.ap-southeast-1.amazonaws.com/builderlee-repo:latest
+```
+
 We're done! continue to [Part 4 : Running Batch Jobs with AWS Batch](./doc-module-04.md)
