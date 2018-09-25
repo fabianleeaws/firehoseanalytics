@@ -1,42 +1,124 @@
-## Running Batch Jobs with AWS Batch
+## Creating a Sample Python Application
 
-AWS Batch is a set of batch management capabilities that enables developers, scientists, and engineers to easily and efficiently run hundreds of thousands of batch computing jobs on AWS. AWS Batch dynamically provisions the optimal quantity and type of compute resources (e.g., CPU or memory optimized instances) based on the volume and specific resource requirements of the batch jobs submitted. With AWS Batch, there is no need to install and manage batch computing software or server clusters, allowing you to instead focus on analyzing results and solving problems. AWS Batch plans, schedules, and executes your batch computing workloads using Amazon EC2 and Spot Instances.
+We'll be building a sample Python application. When building application that run on AWS, most developers want to take advantage of our managed services in a programmatic manner. boto3, the AWS SDK for Python, allows Python developers to write software that makes use of services like S3.
 
-### 1. Configure AWS Batch
+### 1. Create Sample Application
 
-There are a few components you'll need to get familiar with AWS Batch:
+This sample application will:
 
-1.  **Compute Environment**: Compute resources used to run the actual jobs. Environments are flexible as you can set it up to only use a particular type of EC2 instance like m4.large & c5.large, or specify the minimum/desired/maximum vCPUs and let AWS Batch pick the optimal instances. Because batch jobs do not usually require persistent running EC2 servers, spot instances can also be leveraged to increase cost effectiveness, with savings of up to 90% when compared to on-demand EC2 instances.
+1.  Pull the daily data from your **[iamuser-raw-bucket]** S3 bucket delivered by Kinesis Firehose.
+2.  It'll merge the various files delivered into a single line-delimited JSON file and upload it to **[iamuser-workbooks]** S3 bucket
 
-2.  **Job Definitions**: A job definition specifies how jobs are to be run. Think of it as a blueprint for the batch job which defines the resources required to run, ranging from vCPU, RAM, storage to the IAM permissions required so it can access other AWS Services programmatically. Job definitions can also be overwritten when submitted programmatically.
+The purpose of this application is simulate data processing and boilerplate code required to interact with S3 as part of an analytics processing workflow, rather than an actual analytics processing which is up to the developer to implement.
 
-3.  **Job Queues**: When you submit an AWS Batch job, you submit it to a particular job queue, where it resides until it is scheduled onto a compute environment.
+#### 1.1 Using the Cloud9 IDE Environment
 
-**Reference**: https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html
+We'll be using the Cloud9 environment created in **Part 0** of the lab.
 
-#### 1.1 Create Container Repository
+1.  In the AWS Console, search for **Cloud9** under AWS Services and select **Cloud9**.
 
-We will be building a docker container to run our batch job, which simplifies continuous development and deployment of our code. There are many benefits of using containers in general which we will not be diving deep into today, but one benefit with batch is that your code is no longer tied to the Amazon Machine Image (AMI) used to launch the batch job, but rather, self-contained inside a docker image which is decoupled from the underlying infrastructure.
+2.  Select **Open IDE** to use the Cloud9 IDE environment in a new tab:
 
-To store these docker images, we will create an Elastic Container Registry which is backed by S3, offering us the same durability and cost efficient characteristics.
+![Open IDE](./imgs/03/01.png)
 
-1.  In the AWS Console, search for **ECS** under AWS Services and select Elastic Container Service.
+3.  At the bottom of the screen, there will be a terminal window:
 
-2.  Select **Repositories** on the left menu
+![Cloud9 Terminal](./imgs/03/02.png)
 
-3.  Select **Get started**
+Cloud9 runs on an Amazon Linux distribution, which gives us a convenient bash shell to use.Check your current directory:
 
-4.  Enter **[iamuser-repo]** as the **Repository name**
+```
+$ pwd
+/home/ec2-user/environment
+```
 
-5.  Select **Next step**. You now have a private repository for your docker images:
+4.  Ensure your current directory is **/home/ec2-user/environment**, if it isn't, run the following command to change to it:
 
-![ECR Repo](./imgs/03/03.png)
+```
+$ cd /home/ec2-user/environment
+```
 
-6.  On the same page, there are also useful instructions displayed on how to authenticate, and push images into ECR:
+5.  Make a new working directory for our lab:
 
-![ECR Repo](./imgs/03/04.png)
+```
+$ mkdir kinesis-workshop
+```
+
+6.  Create a python file:
+
+```
+$ touch batchjob.py
+```
+
+7.  The file will now appear on the file explorer pane on the left:
+
+![File Explorer Pane](./imgs/03/03.png)
+
+8.  Double click the file to edit the file in the visual editor:
+
+![Visual Editor](./imgs/03/04.png)
+
+9.  Paste the following sample code into the file:
+
+```
+import boto3
+import datetime
+import botocore
+import os, errno, shutil
+
+## Configuration
+now = datetime.date.today()
+YEAR = str(now.year).zfill(4)
+MONTH = str(now.month).zfill(2)
+DAY = str(now.day).zfill(2)
+PREFIX = YEAR+'/'+MONTH+'/'+DAY+'/'
+print (PREFIX)
+STAGING_BUCKET = 'builderlee-raw-bucket' # replace with your S3 bucket name for [iamuser-raw-bucket]
+WORKBOOK_BUCKET = 'builderlee-workbooks' # replace with your S3 bucket name for [iamuser-workbooks]
+KEY = 'test/' # replace with your object key
+SCRATCH = 'scratch'
+OUTPUT_FILE = 'builderlee_output_file.json' # replace with [iamuser_output_file.json]
+
+## Instantiate S3 object via boto3
+s3 = boto3.resource('s3')
+sg_bucket = s3.Bucket(STAGING_BUCKET)
+
+## Create scratch space
+try:
+    os.makedirs(SCRATCH)
+except OSError as e:
+    if e.errno != errno.EEXIST:
+        raise
+
+## Download all data files for the day
+for obj in sg_bucket.objects.filter(Prefix=PREFIX):
+    #print(obj.key)
+    if len(str(obj.key)) > 15:
+        #print('longer than 15')
+        print(obj.key)
+        try:
+            sg_bucket.download_file(obj.key, SCRATCH+obj.key[14:len(obj.key)])
+        except botocore.exceptions.ClientError as e:
+            if e.response['Error']['Code'] == "404":
+                print("The object does not exist.")
+            else:
+                raise
+
+## Merge Files
+with open(OUTPUT_FILE,'wb') as wfd:
+    for f in os.listdir(SCRATCH):
+        print(f)
+        with open(SCRATCH+'/'+f,'rb') as fd:
+            shutil.copyfileobj(fd, wfd, 1024*1024*10)
+
+## Upload processed JSON to Workbook Bucket
+wb_bucket = s3.Bucket(WORKBOOK_BUCKET)
+wb_bucket.upload_file(OUTPUT_FILE, PREFIX+OUTPUT_FILE)
+```
 
 #### 1.2 Create Containerised Batch Job
+
+Now we will need to create a simple application
 
 #### 1.2 Validate the newly created Cognito User
 
@@ -70,34 +152,34 @@ Enter the following details:
 
 1.
 
-```
+````
 {
-  "apMac": "00-40-96-01-23-45",
-  "apTags": ["AP1","Capital Square"],
-  "apFloors": ["1"],
-  "observations": [
-    {
-      "clientMac": "c4:b3:02:d4:54:14",
-      "ipv4": "/111.65.32.53",
-      "ipv6": null,
-      "seenTime": "{{date.utc("YYYY-MM-DD HH:mm:ss.SSS")}}",
-      "seenEpoch": "integer",
-      "ssid": "fabian-note-8",
-      "rssi": "integer",
-      "manufacturer": "Samsung",
-      "os": "Android Oreo",
-      "location": {
-        "lat": 1.290270,
-        "lng": 1.290270,
-        "unc": 1,
-        "x": "[<decimal>, ...]",
-        "y": "[<decimal>, ...]"
-      }
-    }
-  ]
+"apMac": "00-40-96-01-23-45",
+"apTags": ["AP1","Capital Square"],
+"apFloors": ["1"],
+"observations": [
+{
+"clientMac": "c4:b3:02:d4:54:14",
+"ipv4": "/111.65.32.53",
+"ipv6": null,
+"seenTime": "{{date.utc("YYYY-MM-DD HH:mm:ss.SSS")}}",
+"seenEpoch": "integer",
+"ssid": "fabian-note-8",
+"rssi": "integer",
+"manufacturer": "Samsung",
+"os": "Android Oreo",
+"location": {
+"lat": 1.290270,
+"lng": 1.290270,
+"unc": 1,
+"x": "[<decimal>, ...]",
+"y": "[<decimal>, ...]"
 }
-```
+}
+]
+}
 
+```
 #### 2.3 Send Data to Kinesis Firehose & Validate Delivery
 
 1.  Select **Send Data**
@@ -123,7 +205,9 @@ You can read more about changing the prefix here: https://docs.aws.amazon.com/fi
 ![RAW JSON](./imgs/02/06.png)
 
 We're done! continue to [Lab 3 : Running Batch Jobs with AWS Batch](./doc-module-03.md)
-
 ```
 
 ```
+
+```
+````
