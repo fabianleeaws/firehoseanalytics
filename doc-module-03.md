@@ -247,4 +247,6 @@ $ docker push 327377359968.dkr.ecr.ap-southeast-1.amazonaws.com/builderlee-repo:
 
 ![ECR Repo](./imgs/03/09.png)
 
+**Note**: Record down the image destination of your push, as we will need to tell AWS Batch Job Definition which container to use in the next part of the lab. In my example, the image identifier is **327377359968.dkr.ecr.ap-southeast-1.amazonaws.com/builderlee-repo:latest**
+
 We're done! continue to [Part 4 : Running Batch Jobs with AWS Batch](./doc-module-04.md)

@@ -24,13 +24,21 @@ There are a few components you'll need to get familiar with AWS Batch:
 
 4.  Select **Create role**
 
-5.  Select **EC2**
+5.  Select **Elastic Container Service**
 
-6.  Select **Next: Permissions**
+6.  Select **Elastic Container Service Task**
 
-7.  In the search bar, enter **s3full**, and select the checkbox for **AmazonS3FullAccess**:
+7.  Select **Next: Permissions**
+
+8.  In the search bar, enter **s3full**, and select the checkbox for **AmazonS3FullAccess**:
 
 ![AmazonS3FullAccess](./imgs/04/01.png)
+
+8.  Select **Next: Review**
+
+9.  Enter **[iamuser-jobrole]** as the **Role name**, and select **Create role**
+
+**Note**: For the purpose of this lab, we will be giving full S3 permissions. However, as a Security best practice, you should follow the principle of least privilege and only grant the minimum amount of permissions needed based on your application's requirements
 
 #### 1.2 Create Compute Environment
 
@@ -48,11 +56,43 @@ There are a few components you'll need to get familiar with AWS Batch:
 
 - **Compute environment name**: [iamuser-env]
 - **Service role**: Create new role
-- **Instance role**:
+- **Instance role**: Create new role
+
+Leave the remaining settings as default and select **Create**
 
 6.  Select **Job Definition** from the left menu
 
 7.  Enter **[iamuser-job-def]** as the **Job definition name**
+
+#### 1.3 Create Job Queue
+
+1.  Select **Job Queues** on the left menu
+
+2.  Select **Create queue**
+
+3.  Enter the following details:
+
+- **Queue name**: [iamuser-jq]
+- **Priority**: 1
+- **Select a compute environment**: [iamuser-env]
+
+Select **Create**
+
+#### 1.4 Create Job Defnition
+
+1.  Select **Job definitions** from the left menu
+
+2.  Select **Create**
+
+3.  Enter the following details:
+
+- **Job definition name**: [iamuser-jdef]
+- **Job role**: [iamuser-jobrole]
+- **Container image**: [awsaccountid].dkr.ecr.ap-southeast-1.amazonaws.com/[iamuser-repo]:latest
+  **Note**: This is the image identifier we used at the end of part 3 in our **docker push** command
+- **User**: nobody
+
+Select **Create job definition**
 
 We're done! continue to [Lab 3 : Running Batch Jobs with AWS Batch](./doc-module-03.md)
 
