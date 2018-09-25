@@ -140,7 +140,31 @@ $  s3 ls builderlee-workbooks --recursive
 Console:
 ![Batch Job Output](./imgs/03/06.png)
 
-#### 1.2 Create Containerised Batch Job
+### 2. Containerise Batch Job
+
+#### 2.1 Create Container Repository
+
+We will be building a docker container to run our batch job, which simplifies continuous development and deployment of our code. There are many benefits of using containers in general which we will not be diving deep into today, but one benefit with batch is that your code is no longer tied to the Amazon Machine Image (AMI) used to launch the batch job, but rather, self-contained inside a docker image which is decoupled from the underlying infrastructure.
+
+To store these docker images, we will create an Elastic Container Registry which is backed by S3, offering us the same durability and cost efficient characteristics.
+
+1.  In the AWS Console, search for **ECS** under AWS Services and select Elastic Container Service.
+
+2.  Select **Repositories** on the left menu
+
+3.  Select **Get started**
+
+4.  Enter **[iamuser-repo]** as the **Repository name**
+
+5.  Select **Next step**. You now have a private repository for your docker images:
+
+![ECR Repo](./imgs/03/07.png)
+
+6.  On the same page, there are also useful instructions displayed on how to authenticate, and push images into ECR:
+
+![ECR Repo](./imgs/03/08.png)
+
+#### 2.2 Create Containerised Batch Job
 
 AWS Batch supports any job that can be executed as a Docker container. Containerising a Python script is relatively simple compared to a full blown web application, and provides many benefits as you have a self contained image then is built programmatically, and abstracts the underlying infrastructure from the runtime environment.
 
