@@ -25,7 +25,12 @@ There are a few components you'll need to get familiar with AWS Batch:
 4.  Select **Create role**
 
 5.  Select **EC2**
+
 6.  Select **Next: Permissions**
+
+7.  In the search bar, enter **s3full**, and select the checkbox for **AmazonS3FullAccess**:
+
+![AmazonS3FullAccess](./imgs/04/01.png)
 
 #### 1.2 Create Compute Environment
 
