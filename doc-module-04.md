@@ -46,7 +46,7 @@ There are a few components you'll need to get familiar with AWS Batch:
 
 2.  If you currently don't have any resource sconfigured in AWS Batch, you'll be greeted with the **Getting Started** page. Select **Get started**:
 
-![Batch Get Started](./imgs/04/01.png)
+![Batch Get Started](./imgs/04/02.png)
 
 3.  However, we will not be using the getting started Wizard, but create each Batch component individually (Compute Environment, Job Definition etc.) to get a deeper understanding in the dependencies. Select **Cancel** at the bottom right
 
@@ -57,6 +57,11 @@ There are a few components you'll need to get familiar with AWS Batch:
 - **Compute environment name**: [iamuser-env]
 - **Service role**: Create new role
 - **Instance role**: Create new role
+
+In the interest of time, we will be setting the **Minimum vCPUs** and **Desired vCPUs** to 2, which will keep at leat 1 persistent server running even when there are no jobs. For better cost effectiveness, a minimum and desired of 0 will suffice, and AWS Batch will spin up a server only when a job is submitted.
+
+- **Minimum vCPUs**: 2
+- **Desired vCPUs**: 2
 
 Leave the remaining settings as default and select **Create**
 
@@ -112,6 +117,12 @@ Leave the remaining settings as default and select **Submit job**
 
 We're done! continue to [Lab 3 : Running Batch Jobs with AWS Batch](./doc-module-03.md)
 
-```
+### Monitor Job Status
 
-```
+Simple metrics for jobs submitted to an AWS Batch Job Queue can be monitored within the console
+
+1.  Select **Jobs** on the left menu
+
+2.  Jobs can be monitored based on Job Queue, as well as the Job Status:
+
+![Monitor Jobs](./imgs/04/03.png)
