@@ -94,6 +94,22 @@ Select **Create**
 
 Select **Create job definition**
 
+### 2. Submit Job to AWS Batch
+
+#### 2.1 Submit Job
+
+1.  Select **Jobs** on the left menu
+
+2.  Select **Submit job**
+
+3.  Enter the following details:
+
+- **Job name**: [iamuser-jobname]
+- **Job defnition**: [iamuser-jdef]:1
+- **Job queue**: [iamuser-jq]
+
+Leave the remaining settings as default and select **Submit job**
+
 We're done! continue to [Lab 3 : Running Batch Jobs with AWS Batch](./doc-module-03.md)
 
 ```
