@@ -207,7 +207,7 @@ ENTRYPOINT ["python", "/usr/local/bin/batchjob.py"]
 4.  Build Docker image:
 
 ```
-$ docker build -t builderlee-repo/batchjob .
+$ docker build -t [iamuser]-repo/batchjob .
 ```
 
 5.  After the build completes, tag your image so you can push the image to this repository:
