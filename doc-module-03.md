@@ -89,30 +89,36 @@ except OSError as e:
     if e.errno != errno.EEXIST:
         raise
 
-## Download all data files for the day
-for obj in sg_bucket.objects.filter(Prefix=PREFIX):
-    #print(obj.key)
-    if len(str(obj.key)) > 15:
-        #print('longer than 15')
-        print(obj.key)
-        try:
-            sg_bucket.download_file(obj.key, SCRATCH+'/'+obj.key[-78:])
-        except botocore.exceptions.ClientError as e:
-            if e.response['Error']['Code'] == "404":
-                print("The object does not exist.")
-            else:
-                raise
+        # Download all data files for the day
+        print ('Downloading files from S3 with the following prefix: '+PREFIX)
 
-## Merge Files
-with open(OUTPUT_FILE,'wb') as wfd:
-    for f in os.listdir(SCRATCH):
-        print(f)
-        with open(SCRATCH+'/'+f,'rb') as fd:
-            shutil.copyfileobj(fd, wfd, 1024*1024*10)
+        if not sg_bucket.objects:
+            print('Bucket: ' + RAW_BUCKET + 'is empty. No files to download')
+        downloaded = 0
+        for obj in sg_bucket.objects.filter(Prefix=PREFIX):
+            #print(obj.key)
+            if len(str(obj.key)) > 15:
+                try:
+                    sg_bucket.download_file(obj.key, SCRATCH+'/'+obj.key[-78:])
+                    print('File downloaded: '+obj.key)
+                    downloaded += 1
+                except botocore.exceptions.ClientError as e:
+                    if e.response['Error']['Code'] == "404":
+                        print("The object does not exist.")
+                    else:
+                        raise
+        print('Downloaded ' + str(downloaded) + ' files')
 
-## Upload processed JSON to Workbook Bucket
-wb_bucket = s3.Bucket(WORKBOOK_BUCKET)
-wb_bucket.upload_file(OUTPUT_FILE, PREFIX+OUTPUT_FILE)
+        ## Merge Files
+        with open(OUTPUT_FILE,'wb') as wfd:
+            for f in os.listdir(SCRATCH):
+                print('Merging file: '+f)
+                with open(SCRATCH+'/'+f,'rb') as fd:
+                    shutil.copyfileobj(fd, wfd, 1024*1024*10)
+
+        ## Upload processed JSON to Workbook Bucket
+        wb_bucket = s3.Bucket(WORKBOOK_BUCKET)
+        wb_bucket.upload_file(OUTPUT_FILE, PREFIX+OUTPUT_FILE)
 ```
 
 10. You'll need to change a number of parameters under the configuration:
