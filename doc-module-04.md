@@ -65,10 +65,6 @@ In the interest of time, we will be setting the **Minimum vCPUs** and **Desired 
 
 Leave the remaining settings as default and select **Create**
 
-6.  Select **Job Definition** from the left menu
-
-7.  Enter **[iamuser-job-def]** as the **Job definition name**
-
 #### 1.3 Create Job Queue
 
 1.  Select **Job Queues** on the left menu
