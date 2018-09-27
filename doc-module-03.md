@@ -140,7 +140,7 @@ You should see an output similar to the screenshot below:
 12. To validate the **[iamuser_output_file.json]** file has been uploaded to S3, run the following command or view the bucket via the AWS console:
 
 ```
-$  s3 ls builderlee-workbooks --recursive
+$  aws s3 ls builderlee-workbooks --recursive
 ```
 
 Console:
