@@ -213,7 +213,7 @@ $ docker build -t [iamuser]-repo/batchjob .
 5.  After the build completes, tag your image so you can push the image to this repository:
 
 ```
-$ docker tag builderlee-repo/batchjob:latest 327377359968.dkr.ecr.ap-southeast-1.amazonaws.com/builderlee-repo:latest
+$ docker tag [iamuser]-repo/batchjob:latest [awsaccountid].dkr.ecr.ap-southeast-1.amazonaws.com/[iamuser]-repo:latest
 ```
 
 6.  Run the following command to view your newly built and tagged image:
@@ -240,7 +240,7 @@ Login Succeeded
 8.  Run the following command to push the image to ECR:
 
 ```
-$ docker push 327377359968.dkr.ecr.ap-southeast-1.amazonaws.com/builderlee-repo:latest
+$ docker push [awsaccountid].dkr.ecr.ap-southeast-1.amazonaws.com/[iamuser]-repo:latest
 ```
 
 9.  To validate the image has been updated to ECR, search for **ECS** under AWS Services and select Elastic Container Service.
